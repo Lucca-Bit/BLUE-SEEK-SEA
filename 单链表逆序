@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+typedef struct LIST
+{
+    int a;
+    struct LIST *next;
+} single_list;
+
+/*编写一个函数，实现单链表逆序*/
+void reverse_list(single_list *head)
+{
+    single_list *prev = NULL; // 前驱节点
+    single_list *tmp = head;  // 当前节点
+    single_list *rest = NULL; // 后驱节点
+
+    head->next = NULL;
+    while (tmp != NULL)
+    {
+        rest = tmp->next;
+        tmp->next = prev;
+
+        prev = tmp;
+        tmp = rest;
+    }
+    head->next = prev;
+}
